@@ -9,19 +9,24 @@ public class ChatUser {
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
-    private boolean isRoom;
+    private boolean isRoom;   //방에있거나 로비에있음
 
 
     public ChatUser(Socket socket) {
         this.socket = socket;
+
+        isRoom = false;
+
         try {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
+
         } catch (Exception ex) {
             throw new RuntimeException("   ");
         }
 
     }
+
 
     public void close() {
         try {in.close();} catch (Exception ignore) {}
@@ -66,7 +71,7 @@ public class ChatUser {
         return isRoom;
     }
 
-    public void setRoom(boolean room) {
+    public void setisRoom(boolean room) {
         isRoom = room;
     }
 
