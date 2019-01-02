@@ -22,7 +22,7 @@ public class ChatUser {
             out = new DataOutputStream(socket.getOutputStream());
 
         } catch (Exception ex) {
-            throw new RuntimeException("   ");
+            throw new RuntimeException("ChatUser생성시 오류");
         }
 
     }
@@ -75,7 +75,7 @@ public class ChatUser {
         isRoom = room;
     }
 
-    public void wrtie(String message) {
+    public void write(String message) {
         try {
             out.writeUTF(message);
             out.flush();

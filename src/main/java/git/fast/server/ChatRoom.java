@@ -10,7 +10,7 @@ public class ChatRoom {
         public ChatRoom(ChatUser chatUser,String title){
 
 
-            
+
         }
 
 }
