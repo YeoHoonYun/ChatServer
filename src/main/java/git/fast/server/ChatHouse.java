@@ -66,6 +66,15 @@ public class ChatHouse {
         return new ArrayList<ChatUser>();
     }
 
+    public ChatRoom getChatRoom(ChatUser chatUser){
+        for(ChatRoom cr : rooms){
+            if(cr.existsUser(chatUser)){
+                return cr;
+            }
+        }
+        return null;
+    }
+
     public List<ChatRoom> getRooms(){
         return rooms;
     }
@@ -74,4 +83,15 @@ public class ChatHouse {
         rooms.remove(chatRoom);
     }
 
+    public ChatUser roomCreater(ChatRoom chatRoom){
+        for(ChatUser chatUser : chatRoom.getChatUsers()){
+            if(chatUser.isAdmin()){
+                return chatUser;
+            }
+        }
+        return null;
+    }
+    public void chatTwo(ChatUser to, String text){
+        to.write("200///"+text);
+    }
 }

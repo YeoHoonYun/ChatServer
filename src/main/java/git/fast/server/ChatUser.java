@@ -15,9 +15,7 @@ public class ChatUser {
 
     public ChatUser(Socket socket) {
         this.socket = socket;
-
         isRoom = false;
-
         try {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
