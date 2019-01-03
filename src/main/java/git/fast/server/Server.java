@@ -5,4 +5,8 @@ package git.fast.server;
  * Github : https://github.com/YeoHoonYun
  */
 public class Server {
+    public static void main(String[] args){
+        ChatServer chatServer = new ChatServer(8000);
+        chatServer.run();
+    }
 }
