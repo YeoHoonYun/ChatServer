@@ -1,45 +1,57 @@
 package git.fast.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ChatHouse {
-    ArrayList<ChatUser> lobby;
-    ArrayList<ChatRoom> rooms;
+    List<ChatUser> lobby;
+    List<ChatRoom> rooms;
 
     public ChatHouse(){
-        lobby =  new ArrayList<ChatUser>();
-        rooms = new ArrayList<ChatRoom>();
+        lobby = Collections.synchronizedList(new ArrayList<>());
+        rooms = Collections.synchronizedList(new ArrayList<>());
     }
 
     public void addLobby(ChatUser chatUser){
         lobby.add(chatUser);
     }
 
+    public List<ChatUser> getLobby(){   return lobby; }
+
     public void createRoom(ChatUser chatUser, String title){
         rooms.add(new ChatRoom(chatUser, title));
-        chatUser.setRoom(true);
+        chatUser.setisRoom(true);
+        chatUser.setIsAdmin(true);
+        exitLobby(chatUser);
     }
 
     public void joinRoom(ChatUser chatUser , int index){
         rooms.get(index).addChatUser(chatUser);
-        chatUser.setRoom(true);
+        chatUser.setisRoom(true);
+        exitLobby(chatUser);
     }
 
     public void exitRoom(ChatUser chatUser){
         for(ChatRoom cr : rooms){
-            if(cr.existChatUser(chatUser)){
+            if(cr.existsUser(chatUser)){
                 cr.getChatUsers().remove(chatUser);
                 addLobby(chatUser);
-                chatUser.setRoom(false);
+                chatUser.setisRoom(false);
+                //방장 바꾸기..
+                chatUser.setIsAdmin(false);
+
                 // 방에 사람이 한명도 없으면 방 삭제.
-                if(cr.getSize() == 0){
+                if(cr.getChatUsers().size() == 0){
                     deleteRoom(cr);
+                }else{
+                    cr.getChatUsers().get(0).setIsAdmin(true);
                 }
                 break;
             }
         }
     }
+
 
     public void exitLobby(ChatUser chatUser){
         lobby.remove(chatUser);
@@ -47,7 +59,7 @@ public class ChatHouse {
 
     public List<ChatUser> getChatUsers(ChatUser chatUser){
         for(ChatRoom cr : rooms){
-            if(cr.existChatUser(chatUser)){
+            if(cr.existsUser(chatUser)){
                 return cr.getChatUsers();
             }
         }

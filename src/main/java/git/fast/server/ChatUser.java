@@ -10,6 +10,7 @@ public class ChatUser {
     private DataInputStream in;
     private DataOutputStream out;
     private boolean isRoom;   //방에있거나 로비에있음
+    private boolean isAdmin;
 
 
     public ChatUser(Socket socket) {
@@ -90,5 +91,14 @@ public class ChatUser {
         } catch (Exception ex) {
             throw new RuntimeException("메시지 읽을떄 오류");
         }
+    }
+
+
+    public boolean isAdmin(){
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean b){
+        isAdmin = b;
     }
 }
