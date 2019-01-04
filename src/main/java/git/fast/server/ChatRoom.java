@@ -11,12 +11,12 @@ public class ChatRoom {
 
     public ChatRoom(ChatUser chatUser, String title) {
         this.title = title;
-        chatUsers = Collections.synchronizedList(new ArrayList<ChatUser>());
+        chatUsers = new ArrayList<ChatUser>();
         chatUsers.add(chatUser);
 
     }
 
-    public boolean existsUser(ChatUser chatUser) {
+    public synchronized boolean existsUser(ChatUser chatUser) {
         return chatUsers.contains(chatUser);
     }
 
@@ -24,18 +24,20 @@ public class ChatRoom {
         return title;
     }
 
-    public void setTitle(String title){
+    /*public void setTitle(String title){
         this.title = title;
-    }
-    public List<ChatUser> getChatUsers(){
+    }*/
+
+    public synchronized List<ChatUser> getChatUsers(){
         return chatUsers;
 
     }
 
-    public void setChatUsers(List<ChatUser> chatUsers) {
+    /*public synchronized void setChatUsers(List<ChatUser> chatUsers) {
         this.chatUsers = chatUsers;
-    }
-    public void addChatUser(ChatUser chatUser){
+    }*/
+
+    public synchronized void addChatUser(ChatUser chatUser){
         chatUsers.add(chatUser);
     }
 
