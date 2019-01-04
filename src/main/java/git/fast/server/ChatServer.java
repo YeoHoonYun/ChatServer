@@ -54,19 +54,19 @@ class ChatServerHandler extends Thread {
         // "/nick 닉네임" 으로 온다.
         chatUser.setName(name.substring(name.indexOf(" ") + 1));
         chatHouse.addLobby(chatUser);
-        chatUser.write("닉네임 : "+chatUser.getName());
+        chatUser.write("100///닉네임 : "+chatUser.getName());
         try{
             //메뉴 반복 실행
             while (true){ // 로비에 있을때만 메시지출력!
                 if(!chatUser.isRoom()) {
-                    chatUser.write("현재 로비에 있습니다." +"(현재 인원 수 : "+ chatHouse.getLobby().size() + "명)");
+                    chatUser.write("300///현재 로비에 있습니다." +"(현재 인원 수 : "+ chatHouse.getLobby().size() + "명)");
                     chatUser.write("/help : 도움말 , 메뉴를 확인하세요 ");
                 }
 
                 if (chatUser.isRoom()) {    //방에 있을 때
                     String msg = chatUser.read();
                     if(!chatUser.isRoom()){
-                        chatUser.write("당신은 로비에 있습니다.");
+                        chatUser.write("300///당신은 로비에 있습니다.");
                     }
                     else if (msg.indexOf("/exit") == 0) { // 방에서 나감
                         chatUser.setIsAdmin(false);
@@ -88,7 +88,7 @@ class ChatServerHandler extends Thread {
                             chatHouse.printChatUsers(chatUser);
 
                             if (users.size() == 1) {
-                                chatUser.write("강퇴할 유저가 없습니다.");
+                                chatUser.write("300///강퇴할 유저가 없습니다.");
                                 continue;
                             }
                             try {
@@ -97,10 +97,10 @@ class ChatServerHandler extends Thread {
                                 users.get(index).write("강퇴당했습니다 ㅠㅠ");
                                 chatHouse.exitRoom(users.get(index));
                             } catch (Exception e){
-                                chatUser.write("유저 번호가 없거나 잘못된 형식입니다.");
+                                chatUser.write("300///유저 번호가 없거나 잘못된 형식입니다.");
                             }
                         } else {
-                            chatUser.write("권한이 없습니다.");
+                            chatUser.write("300///권한이 없습니다.");
                         }
                     } else if (chatUser.isAdmin() && msg.indexOf("/visi") == 0) {
                         // 방장이 로비에 있는 인원 초대할 때
@@ -120,7 +120,7 @@ class ChatServerHandler extends Thread {
                                 }
                             }
                             try {
-                                chatUser.write("초대할 유저 번호를 입력하세요.");
+                                chatUser.write("300///초대할 유저 번호를 입력하세요.");
                                 int index = Integer.parseInt(chatUser.read());
                                 ChatUser visiUser = chatHouse.getLobby().get(index);
                                 chatHouse.getLobby().remove(visiUser);
@@ -134,7 +134,7 @@ class ChatServerHandler extends Thread {
                                     cu.write("300///"+visiUser.getName() + "님이 방에 입장했습니다.");
                                 }
                             }catch (Exception e){
-                                System.out.println("유저 번호가 없거나 잘못된 형식입니다.");
+                                System.out.println("300///유저 번호가 없거나 잘못된 형식입니다.");
                             }
                         } catch (Exception e){
 
