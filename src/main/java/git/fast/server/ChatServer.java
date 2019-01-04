@@ -108,7 +108,7 @@ class ChatServerHandler extends Thread {
                                 users.get(index).write("강퇴당했습니다 ㅠㅠ");
                                 chatHouse.exitRoom(users.get(index));
                             }catch (Exception e){
-                                chatUser.write("해당 유저 번호가 없습니다.");
+                                chatUser.write("유저 번호가 없거나 잘못된 형식입니다.");
                             }
                         }
                     }else if (chatUser.isAdmin() && msg.indexOf("/visi") == 0) {
@@ -143,7 +143,7 @@ class ChatServerHandler extends Thread {
                                     cu.write("300///"+visiUser.getName() + "님이 방에 입장했습니다.");
                                 }
                             }catch (Exception e){
-                                System.out.println("해당 유저 번호가 없습니다.");
+                                System.out.println("유저 번호가 없거나 잘못된 형식입니다.");
                             }
                         }catch (Exception e){
 
@@ -169,7 +169,7 @@ class ChatServerHandler extends Thread {
                             String string = chatUser.read();
                             chatHouse.chatTwo(inUser, chatUser.getName() + " : " + string);
                         }catch (Exception e){
-                            chatUser.write("유저 번호가 없습니다.");
+                            chatUser.write("유저 번호가 없거나 잘못된 형식입니다.");
                         }
                     } else {
                         List<ChatUser> userList = chatHouse.getChatUsers(chatUser);
@@ -236,7 +236,7 @@ class ChatServerHandler extends Thread {
                             String string = chatUser.read();
                             chatHouse.chatTwo(inUser, chatUser.getName() + " : " + string);
                         }catch (Exception e){
-                            chatUser.write("유저 번호가 없습니다.");
+                            chatUser.write("유저 번호가 없거나 잘못된 형식입니다.");
                         }
                     } else if (msg.indexOf("/help") == 0) {
                         chatUser.write("============ 메뉴 ===========");
