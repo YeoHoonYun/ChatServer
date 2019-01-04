@@ -1,11 +1,11 @@
 # ChatServer
 ## 2조 채팅 프로그램
-조원
-최다빈 e-mail : dabinnn1011@naver.com
-정미수 e-mail : jungmisu801@gmail.com
-윤여훈 e-mail : cjswo9207@naver.com
+### 조원
+ - 최다빈 e-mail : dabinnn1011@naver.com
+ - 정미수 e-mail : jungmisu801@gmail.com
+ - 윤여훈 e-mail : cjswo9207@naver.com
 
-프로젝트 목표
+### 프로젝트 목표
  - 객체지향 프로그래밍과 쓰레드에 대해 숙련도 상승
  - 자바 네트워크 프로그래밍 실습
 
